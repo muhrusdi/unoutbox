@@ -33,7 +33,6 @@ export const FormVerify = () => {
 
   const watchDebounce = debounce(async () => {
     if (formRef.current) {
-      console.log("--", methods.formState.errors)
       formRef.current.requestSubmit()
     }
   }, 1000)
