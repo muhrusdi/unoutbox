@@ -98,6 +98,7 @@ export const FormVerify = () => {
           type="button"
           onPress={handleSubmit}
           isDisabled={
+            !methods.watch("username") ||
             !!methods.formState.errors?.username?.message ||
             !methods.watch("tnc") ||
             isVerifyPending ||

@@ -10,6 +10,8 @@ export function middleware(request: NextRequest) {
     requestHeaders.set("Authorization", "Bearer " + accessToken.value)
   }
 
+  requestHeaders.set("x-current-path", request.nextUrl.pathname)
+
   const response = NextResponse.next({
     request: {
       headers: requestHeaders,
