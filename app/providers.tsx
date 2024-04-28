@@ -2,6 +2,7 @@
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { TransitionStartFunction, createContext, useTransition } from "react"
+import { NextUIProvider } from "@nextui-org/react"
 
 type Props = {
   children: React.ReactNode
@@ -25,11 +26,13 @@ export const Providers: React.FC<Props> = ({ children }) => {
   const [isPending, startTransition] = useTransition()
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <ProviderContext.Provider value={{ isPending, startTransition }}>
-        {children}
-      </ProviderContext.Provider>
-    </QueryClientProvider>
+    <NextUIProvider>
+      <QueryClientProvider client={queryClient}>
+        <ProviderContext.Provider value={{ isPending, startTransition }}>
+          {children}
+        </ProviderContext.Provider>
+      </QueryClientProvider>
+    </NextUIProvider>
   )
 }
 
