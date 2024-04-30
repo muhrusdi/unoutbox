@@ -1,7 +1,7 @@
 "use client"
 
 import { Button, Chip, RadioGroup, cn } from "@nextui-org/react"
-import { Fingerprint, KeyRound } from "lucide-react"
+import { Fingerprint, Info, KeyRound } from "lucide-react"
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form"
 import { z } from "zod"
 import { secureSchema } from "@/types"
@@ -9,6 +9,7 @@ import { Radio } from "@/components/forms/radio"
 import { useActionState } from "react"
 import { createSecureAction } from "./actions"
 import { Input } from "@/components/forms/input"
+import { PasskeyInfo } from "./passkey-info"
 
 export const SecureForm = () => {
   const [state, action, isPending] = useActionState(createSecureAction, null)
@@ -36,7 +37,7 @@ export const SecureForm = () => {
             value="passkey"
             classNames={{
               base: cn(
-                "bg-gray-100 rounded-lg border border-gray-300 w-full max-w-full p-0 cursor-pointer -ml-0",
+                "bg-gray-100 rounded-lg border border-gray-300 py-4 w-full max-w-full px-0 cursor-pointer -ml-0",
                 "data-[selected=true]:border-green-500 [&>div:last-of-type]:w-full [&>span]:hidden"
               ),
             }}
@@ -59,7 +60,7 @@ export const SecureForm = () => {
             value="password"
             classNames={{
               base: cn(
-                "bg-gray-100 rounded-lg border border-gray-300 p-4 w-full max-w-full cursor-pointer -ml-0",
+                "bg-gray-100 rounded-lg border border-gray-300 py-4 w-full max-w-full px-0 cursor-pointer -ml-0",
                 "data-[selected=true]:border-green-500 [&>div:last-of-type]:w-full [&>span]:hidden"
               ),
             }}
@@ -80,25 +81,7 @@ export const SecureForm = () => {
         </RadioGroup>
         <div className="pt-10">
           {methods.watch("secureType") === "passkey" ? (
-            <div>
-              <h4 className="font-bold">What are passkeys?</h4>
-              <p className="mt-1">
-                Passkeys are the new replacement for passwords, designed to give
-                you access to an app in an easier and more secure way.
-              </p>
-              <div className="flex space-x-3 mt-4">
-                <div className="w-1/2">
-                  <Button variant="bordered" color="success" fullWidth>
-                    How do they work
-                  </Button>
-                </div>
-                <div className="w-1/2">
-                  <Button variant="bordered" color="warning" fullWidth>
-                    How do I add passkey?
-                  </Button>
-                </div>
-              </div>
-            </div>
+            <PasskeyInfo />
           ) : (
             <div>
               <div>
@@ -126,6 +109,12 @@ export const SecureForm = () => {
           <Button type="submit" fullWidth>
             Submit
           </Button>
+          <div className="mt-4 text-center text-gray-500 text-sm">
+            <p>
+              Tip: If you have any issues during this process, reach out to our
+              support team
+            </p>
+          </div>
         </div>
       </form>
     </FormProvider>

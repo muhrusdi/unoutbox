@@ -22,6 +22,7 @@ const Input: React.FC<Props> = ({ name, ...props }) => {
           <NextInput
             {...props}
             {...field}
+            variant="bordered"
             isInvalid={Boolean(errorMessage)}
             errorMessage={errorMessage as string}
           />

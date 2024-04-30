@@ -36,3 +36,7 @@ export const usernameSchema = z.object({
     ),
   tnc: z.boolean().optional(),
 })
+
+export const secureSchema = z.object({
+  secureType: z.string(),
+})
